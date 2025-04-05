@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4686243693775433615}
   - component: {fileID: 4293288675898432116}
   m_Layer: 0
-  m_Name: box
+  m_Name: red_box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5415956164960079460}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.4270308, y: -0.346117, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -12.457991, y: 2.878872, z: 0.11790476}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ea0b16abcebb7fe4db87fda7db4873c1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f618891e4958abe408b21fda830401c4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -164,3 +164,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07ebdaab828e1f5499274e470db616c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cost: 3
+  ui_ref: {fileID: 8487746434623530900, guid: 8c22b86336b99324f91ee712a307f460, type: 3}

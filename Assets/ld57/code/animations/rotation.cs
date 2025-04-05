@@ -1,6 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
-public class rotation : MonoBehaviour
+public class rotation : animation
 {
     public float rotationdegree = 0.01f;
     public float duration = 0.1f;      

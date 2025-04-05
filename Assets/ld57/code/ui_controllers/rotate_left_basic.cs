@@ -6,8 +6,13 @@ public class rotate_left_basic : button
 {
     public override void Init()
     {
-        on_click();
-        gameObject.GetComponent<Button>().onClick.AddListener(() => g.sc.TurnLeft());
+        gameObject.GetComponent<Button>().onClick.AddListener(() => on_click());
         base.Init();
+    }
+
+    public override void on_click()
+    {
+        g.sc.TurnLeft();
+        base.on_click();
     }
 }

@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 using System.Collections;
-public class updown : MonoBehaviour
+public class updown : animation
 {
     public float moveDistance = 0.01f;
     public float duration = 0.1f;      

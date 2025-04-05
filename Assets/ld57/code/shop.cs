@@ -17,8 +17,13 @@ public class shop : initializable
     {
         toggled = !toggled;
         if(toggled)
+        {
             sp.gameObject.SetActive(true);
+            sp.generate_store();
+        }
         else
+        {
             sp.gameObject.SetActive(false);
+        }
     }
 }

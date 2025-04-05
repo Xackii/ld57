@@ -4,9 +4,7 @@ using UnityEngine;
 public class shop_panel : initializable
 {
     public List<purchable> to_store_from;
-
     public List<shop_slot> slots;
-
     public override void Init()
     {
         base.Init();
@@ -19,10 +17,17 @@ public class shop_panel : initializable
             if(p.purched) continue;
             shop_cart.Add(p);
         }
-        for(int i = 1; i <= 3; i++)
+        for(int i = 0; i < 3; i++)
         {
-            int randomNumber = Random.Range(1, shop_cart.Count - 1);
-            slots[i].binded_purchable = shop_cart[randomNumber];
+            int randomNumber = Random.Range(0, shop_cart.Count - 1);
+            purchable new_item_component = shop_cart[randomNumber];
+            GameObject new_item = Instantiate(shop_cart[randomNumber].gameObject);
+            new_item_component.g = g;
+            new_item.GetComponent<hover>().g = g;
+            new_item.GetComponent<hover>().Init();
+            new_item.transform.SetParent(g.spawn_p.gameObject.transform); 
+            new_item.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
+            slots[i].binded_purchable = new_item_component;
             shop_cart[randomNumber].gameObject.transform.position = slots[i].gameObject.transform.position;
         }
     }
