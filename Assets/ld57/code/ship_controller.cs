@@ -4,8 +4,15 @@ using DG.Tweening;
 using System.Timers;
 public class ship_controller : tickable
 {
+    public enum rotation_system
+    {
+        buttons,
+        wheel
+    }
     public float speed = 10f;
     public float rotationSpeed = 100f;
+
+    public rotation_system system_we_have = rotation_system.buttons;
 
     bool isTurningLeft = false;
     bool isMoveForward = false;
@@ -97,23 +104,37 @@ public class ship_controller : tickable
 
     public override void Tick()
     {
-        if(isTurningLeft)
-        {
-            transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
-        }
-        if(isTurningRight)
-        {
-            transform.Rotate(0f, 0f, -rotationSpeed * Time.deltaTime);
-        }
         if(isMoveForward)
         {
             transform.Translate(Vector3.up * speed * Time.deltaTime);
         }
+        check_rotate();
+
         Vector3 desiredPosition = transform.position + offset;
 
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
         smoothedPosition.z = -100;
         c.transform.position = smoothedPosition;
+    }
+
+    void check_rotate()
+    {
+        switch(system_we_have)
+        {
+            case rotation_system.buttons:
+                if(isTurningRight)
+                {
+                    transform.Rotate(0f, 0f, -rotationSpeed * Time.deltaTime);
+                }
+                if(isTurningLeft)
+                {
+                    transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
+                }
+                return;
+            case rotation_system.wheel:
+                transform.Rotate(0f, 0f, g.w.GetShipRotationAngle() * Time.deltaTime);
+                return;
+        }   
     }
 
     void OnCollisionEnter2D(Collision2D other)

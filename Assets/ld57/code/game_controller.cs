@@ -6,6 +6,8 @@ using UnityEngine.UIElements;
 public class game_controller : MonoBehaviour
 {
     public ship_controller sc;
+    public shop s;
+    public wheel w;
     public menu m;
     public bool game_paused = false;
     public int player_on_lvl = 1;
@@ -16,7 +18,9 @@ public class game_controller : MonoBehaviour
     void Awake()
     {
         sc = FindAnyObjectByType<ship_controller>();
+        w = FindAnyObjectByType<wheel>();
         m = FindAnyObjectByType<menu>();
+        s = FindAnyObjectByType<shop>();
         foreach(initializable to_init in FindObjectsByType<initializable>(FindObjectsSortMode.None))
         {
             to_init.g = this;
@@ -36,6 +40,7 @@ public class game_controller : MonoBehaviour
 
     public void go_play()
     {
+        player_on_lvl = 1;
         prepare_game();
         m.menu_status();
     }
