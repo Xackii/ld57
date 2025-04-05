@@ -1,16 +1,15 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class tickable : MonoBehaviour
+public class tickable : initializable
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        if(g.game_paused) return;
+        Tick();
+    }
+    public virtual void Tick()
+    {
+
     }
 }
