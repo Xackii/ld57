@@ -19,7 +19,7 @@ public class menu : initializable
         }
     }
 
-    void menu_status()
+    public void menu_status()
     {
         mp.is_activated = !mp.is_activated;
         mp.gameObject.SetActive(mp.is_activated);
