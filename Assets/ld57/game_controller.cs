@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class game_controller : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public ship_controller sc;
+    void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        sc = FindAnyObjectByType<ship_controller>();
+        foreach(initializable to_init in FindObjectsByType<initializable>(FindObjectsSortMode.None))
+        {
+            to_init.g = this;
+            to_init.Init();
+        }
     }
 }
