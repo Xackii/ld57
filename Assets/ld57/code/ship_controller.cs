@@ -47,8 +47,20 @@ public class ship_controller : tickable
     public void MoveForward()
     {
         click_sound.Play();
+        
+
         isMoveForward = !isMoveForward;
+        if(isMoveForward)
+        {
+            g.charges_we_have--;
+            if(g.charges_we_have < 0)
+            {
+                g.on_lose();
+                return;
+            }
+        }
         engine_status();
+        g.update_info();        
     }
 
     public void TurnLeft()
@@ -67,11 +79,13 @@ public class ship_controller : tickable
 
     public void stop_ship()
     {
-        isTurningRight = isTurningLeft = isMoveForward = false;
-        engine_status();
         if(g.rlb.isclicked) g.rlb.change_button_icon();
         if(g.rrb.isclicked) g.rrb.change_button_icon();
         if(g.mub.isclicked) g.mub.change_button_icon();
+        g.charges_we_have = g.max_charges;
+        isTurningRight = isTurningLeft = isMoveForward = false;
+        gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+        engine_status();
     }
     public void engine_status()
     {

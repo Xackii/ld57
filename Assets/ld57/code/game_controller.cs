@@ -23,13 +23,14 @@ public class game_controller : MonoBehaviour
     public spawn_purchable spawn_p;
     public game_status game_check = game_status.game_start;
     public bool game_paused = false;
+    public bool sell_on_step = false;
     public int player_on_lvl = 1;
     public int last_level = 5;
     public int max_charges = 3;
     public int charges_we_have = 3;
     public int money = 0;
     public GameObject ship;
-
+    public GameObject drop_pos;
     public rotate_left_basic rlb;
     public rotate_right_basic rrb;
     public move_up_basic mub;
@@ -101,16 +102,26 @@ public class game_controller : MonoBehaviour
         player_on_lvl = 1;
         prepare_game();
         m.menu_status();
+        update_info();
     }
 
     public void station_entered()
     {
         sc.stop_ship();
         s.shop_status();
+        foreach(purchable purch in upgrades_buyed)
+        {
+            purch.when_selling_effect();
+        }
         sell_cargo();
         player_on_lvl++;
         update_info();
-        if(player_on_lvl > last_level) m.menu_status();
+        if(player_on_lvl > last_level) 
+        {
+            Debug.Log(player_on_lvl);
+            Debug.Log(last_level);
+            m.menu_status();
+        }
         set_spawn();
     }
 
@@ -143,6 +154,21 @@ public class game_controller : MonoBehaviour
     }      
     public void collect_box(GameObject box)
     {
+        if(c.slots_filled_with.Count >= c.max_slots)
+        {
+            collectable collect = c.slots_filled_with[0];
+            c.slots_filled_with.Remove(collect);
+            if(sell_on_step)
+            {
+                delete_from_nullspace(collect.gameObject);
+                money_change(1);
+            }
+            else
+            {
+                remove_from_nullspace(collect.gameObject, drop_pos.transform.position);
+            }
+            Destroy(collect.ui_cash);
+        }
         collectable b = box.GetComponent<collectable>();
         GameObject box_ui = Instantiate(b.ui_ref);
         box_ui.transform.SetParent(c.fc.gameObject.transform); 
@@ -158,9 +184,9 @@ public class game_controller : MonoBehaviour
         ns.contants.Add(you_gonna_brazil);
     }
 
-    public void remove_from_nullspace(GameObject pick_me_please, Transform new_pos)
+    public void remove_from_nullspace(GameObject pick_me_please, Vector3 new_pos)
     {
-        pick_me_please.transform.position = new_pos.position;
+        pick_me_please.transform.position = new_pos;
         ns.contants.Remove(pick_me_please);
     }      
 
@@ -172,6 +198,7 @@ public class game_controller : MonoBehaviour
 
     public void prepare_game()
     {
+        money = 0;
         foreach(loot_respawner lr in loot_spawners)
             lr.spawn_loot();
         if(upgrades_buyed.Count > 0)
@@ -191,6 +218,10 @@ public class game_controller : MonoBehaviour
             lr.delete_loot();
         sc.stop_ship();
         sc.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
-        m.menu_status();
+        if(!m.mp.is_activated)
+        {
+            m.menu_status();
+        }
+        update_info();
     }
 }

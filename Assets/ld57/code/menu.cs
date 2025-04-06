@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class menu : initializable
 {
-    menu_panel mp;
+    public menu_panel mp;
     public override void Init()
     {
         mp = FindFirstObjectByType<menu_panel>();

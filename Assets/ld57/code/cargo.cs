@@ -8,6 +8,7 @@ public class cargo : initializable
     public List<cargo_slot> slots;
     public List<collectable> slots_filled_with = new List<collectable>();
     public fill_cargo fc;
+    public int max_slots = 3;
 
     public override void Init()
     {
