@@ -6,13 +6,14 @@ public class move_up_basic : button
 {
     public override void Init()
     {
-        gameObject.GetComponent<Button>().onClick.AddListener(() => on_click());
+        gameObject.GetComponent<Button>().onClick.AddListener(() => on_click(false));
         base.Init();
     }
 
-    public override void on_click()
-    {
-        g.sc.MoveForward();
-        base.on_click();
+    public override void on_click(bool forced)
+    {   
+        if(!forced)
+            g.sc.MoveForward();
+        base.on_click(forced);
     }
 }

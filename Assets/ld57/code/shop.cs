@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class shop : initializable
 {
-    shop_panel sp;
+    public shop_panel sp;
 
     bool toggled = false;
     public override void Init()
@@ -12,7 +12,6 @@ public class shop : initializable
         sp.gameObject.SetActive(false);
         base.Init();
     }
-
     public void shop_status()
     {
         toggled = !toggled;

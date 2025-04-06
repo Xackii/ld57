@@ -9,11 +9,14 @@ public class purchable : initializable, IPointerClickHandler
 
     public virtual void on_buy()
     {
+        g.money_change(-cost);
+        g.upgrades_buyed.Add(this);
         return;
     }
 
     public void try_buy()
     {
+        if(g == null) g = FindAnyObjectByType<game_controller>();
         if(g.money < cost) return;
         on_buy();
     }

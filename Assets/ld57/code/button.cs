@@ -7,7 +7,12 @@ public class button : initializable
     public Sprite clicked;
     public bool isclicked = false;
 
-    public virtual void on_click()
+    public virtual void on_click(bool forced)
+    {
+        change_button_icon();
+    }
+
+    public void change_button_icon()
     {
         isclicked = !isclicked;
         if(isclicked)

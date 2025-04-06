@@ -67,6 +67,9 @@ public class ship_controller : tickable
     {
         isTurningRight = isTurningLeft = isMoveForward = false;
         engine_status();
+        if(g.rlb.isclicked) g.rlb.change_button_icon();
+        if(g.rrb.isclicked) g.rrb.change_button_icon();
+        if(g.mub.isclicked) g.mub.change_button_icon();
     }
     public void engine_status()
     {

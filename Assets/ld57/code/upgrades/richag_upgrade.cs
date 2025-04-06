@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class depth_text_ui : MonoBehaviour
+public class richag_upgrade : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
