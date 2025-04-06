@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 531808105765354631}
   - component: {fileID: 5780828624405517569}
   - component: {fileID: 8399278044929066480}
-  - component: {fileID: 8111142288414405153}
   - component: {fileID: -1464869949027377422}
   - component: {fileID: 1646206346444188353}
+  - component: {fileID: 2185602332514487758}
   m_Layer: 5
-  m_Name: buy_wheel
+  m_Name: buy_richag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,21 +78,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8111142288414405153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8022599490369677280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94bc06a8f213a164f8bede6f9d496a55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  g: {fileID: 0}
-  purched: 0
-  cost: 3
 --- !u!114 &-1464869949027377422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,3 +109,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   g: {fileID: 0}
   desc: Replaces push-button turn signals with steering wheel controls!
+--- !u!114 &2185602332514487758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8022599490369677280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 380ded22dad677c4884234cc955a4cfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  g: {fileID: 0}
+  purched: 0
+  cost: 3

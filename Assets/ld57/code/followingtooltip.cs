@@ -56,6 +56,7 @@ public class followingtooltip : MonoBehaviour
     public void tooltip_status(bool set_tooltip, string set_desc)
     {
         description_to_ui.text = set_desc;
+        if(tooltip_image == null) return;
         tooltip_image.enabled = set_tooltip;
         foreach(Image parent_image in GetComponentsInChildren<Image>())
         {

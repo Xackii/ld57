@@ -10,6 +10,8 @@ public class ship_controller : tickable
         wheel
     }
     public float speed = 10f;
+
+    public int movedir = 1;
     public float rotationSpeed = 100f;
 
     public rotation_system system_we_have = rotation_system.buttons;
@@ -109,7 +111,7 @@ public class ship_controller : tickable
     {
         if(isMoveForward)
         {
-            transform.Translate(Vector3.up * speed * Time.deltaTime);
+            transform.Translate(Vector3.up * speed * movedir * Time.deltaTime);
         }
         check_rotate();
 
@@ -120,6 +122,18 @@ public class ship_controller : tickable
         c.transform.position = smoothedPosition;
     }
 
+    public void change_move_dir(bool is_forward)
+        {
+            if(is_forward)
+                {
+                    movedir = 1;    
+                }
+            else
+                {
+                    movedir = -1;
+                }
+        }
+        
     void check_rotate()
     {
         switch(system_we_have)
@@ -135,7 +149,7 @@ public class ship_controller : tickable
                 }
                 return;
             case rotation_system.wheel:
-                transform.Rotate(0f, 0f, g.w.GetShipRotationAngle() * Time.deltaTime);
+                transform.Rotate(0f, 0f, g.w.get_angel() * Time.deltaTime);
                 return;
         }   
     }

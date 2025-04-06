@@ -21,7 +21,7 @@ public class wheel : dragable
     }
     public override void drag_handler(PointerEventData eventData)
     {
-        if (!isDragging)
+        if(!isDragging)
             return;
         float mouseX = Input.mousePosition.x;
         float deltaX = lastMouseX - mouseX;
@@ -43,10 +43,10 @@ public class wheel : dragable
         base.end_drag_handler(eventData);
         isDragging = false;
 
-        StartCoroutine(SmoothReturnToInitialPosition());
+        StartCoroutine(initial_pos());
     }
 
-    private IEnumerator SmoothReturnToInitialPosition()
+    private IEnumerator initial_pos()
     {
         float timeElapsed = 0f;
         float duration = 0.5f;
@@ -64,7 +64,7 @@ public class wheel : dragable
         rectTransform.rotation = Quaternion.Euler(0, 0, currentRotation);
     }
 
-    public float GetShipRotationAngle()
+    public float get_angel()
     {
         return currentRotation - initialRotation;
     }

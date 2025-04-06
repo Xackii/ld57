@@ -34,6 +34,7 @@ public class game_controller : MonoBehaviour
     public rotate_right_basic rrb;
     public move_up_basic mub;
     public wheel w;
+    public richag_panel rp;
     public rotators rts;
     public List<purchable> upgrades_buyed = new List<purchable>();
     public List<loot_respawner> loot_spawners;
@@ -56,6 +57,7 @@ public class game_controller : MonoBehaviour
         rrb = FindAnyObjectByType<rotate_right_basic>();
         mub = FindAnyObjectByType<move_up_basic>();
         rts = FindAnyObjectByType<rotators>();
+        rp = FindAnyObjectByType<richag_panel>();
 
 
         foreach(initializable to_init in FindObjectsByType<initializable>(FindObjectsSortMode.None))
