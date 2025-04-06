@@ -20,6 +20,8 @@ public class ship_controller : tickable
     bool isMoveForward = false;
     bool isTurningRight = false;
 
+    public bool blackhole_influence = false;
+
     public AudioSource click_sound;
     public AudioSource engine_works;
 
@@ -82,6 +84,7 @@ public class ship_controller : tickable
         if(g.rlb.isclicked) g.rlb.change_button_icon();
         if(g.rrb.isclicked) g.rrb.change_button_icon();
         if(g.mub.isclicked) g.mub.change_button_icon();
+        blackhole_influence = false;
         g.charges_we_have = g.max_charges;
         isTurningRight = isTurningLeft = isMoveForward = false;
         gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -190,19 +193,11 @@ public class ship_controller : tickable
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if(other.gameObject.GetComponent<finish>())
-        {
-    
-            
-        }
+        blackhole_influence = true;
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(other.gameObject.GetComponent<finish>())
-        {
-    
-            
-        }
+        blackhole_influence = false;
     }
 }

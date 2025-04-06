@@ -13,7 +13,10 @@ public class hover : animation, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        g.ft.tooltip_status(true, desc);
+        if(desc != "")
+        {
+            g.ft.tooltip_status(true, desc);
+        }
         if(transform == null) return;
         transform.DOScale(originalScale * scaleFactor, 0.3f).SetEase(Ease.OutBack);
     }

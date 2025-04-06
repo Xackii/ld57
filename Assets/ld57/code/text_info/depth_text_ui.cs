@@ -11,7 +11,7 @@ public class depth_text_ui : text_info
 
     public override void update_text()
     {
-        string generate_text = $"Depth {(int)MathF.Min(g.player_on_lvl, g.last_level)}/{g.last_level}";
+        string generate_text = $"Depth {(int)MathF.Min(g.player_on_lvl, 4)}/{4}";
         depth_to_text.text = generate_text;
         base.update_text();
     }

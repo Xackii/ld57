@@ -15,6 +15,10 @@ public class menu : initializable
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
+            if(g.tutor_status == game_controller.tutoring.tutor_in_progress)
+            {
+                Debug.Log("1");
+            }
             menu_status();
         }
     }

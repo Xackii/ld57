@@ -14,8 +14,15 @@ public class game_controller : MonoBehaviour
         game_loop,
         game_end
     }
+
+    public enum tutoring
+    {
+        tutor_in_progress,
+        tutor_winned
+    }
     public ship_controller sc;
     public shop s;
+    public tutoring tutor_status = tutoring.tutor_in_progress;
     public menu m;
     public cargo c;
     public nullspace ns;
@@ -37,9 +44,15 @@ public class game_controller : MonoBehaviour
     public wheel w;
     public richag_panel rp;
     public rotators rts;
+    public blackhole_centre bc;
     public List<purchable> upgrades_buyed = new List<purchable>();
     public List<loot_respawner> loot_spawners;
     public List<text_info> text_to_update = new List<text_info>();
+    public tutor_manager tm;
+
+    public AudioSource crash_sound;
+
+    public AudioSource coin_sound;
 
     List<spawner> spawns = new List<spawner>();
     void Awake()
@@ -59,6 +72,8 @@ public class game_controller : MonoBehaviour
         mub = FindAnyObjectByType<move_up_basic>();
         rts = FindAnyObjectByType<rotators>();
         rp = FindAnyObjectByType<richag_panel>();
+        bc = FindAnyObjectByType<blackhole_centre>();
+        tm = FindAnyObjectByType<tutor_manager>();
 
 
         foreach(initializable to_init in FindObjectsByType<initializable>(FindObjectsSortMode.None))
@@ -116,11 +131,11 @@ public class game_controller : MonoBehaviour
         sell_cargo();
         player_on_lvl++;
         update_info();
-        if(player_on_lvl > last_level) 
+        if(player_on_lvl >= last_level) 
         {
-            Debug.Log(player_on_lvl);
-            Debug.Log(last_level);
             m.menu_status();
+            foreach(loot_respawner lr in loot_spawners)
+                lr.delete_loot();
         }
         set_spawn();
     }
@@ -141,6 +156,7 @@ public class game_controller : MonoBehaviour
     {
         money += value;
         update_info();
+        coin_sound.Play();
     }
 
     public void set_spawn()
@@ -176,6 +192,7 @@ public class game_controller : MonoBehaviour
         b.ui_cash = box_ui;
         c.slots_filled_with.Add(b);
         move_to_nullspace(box);
+        coin_sound.Play();
     }
 
     public void move_to_nullspace(GameObject you_gonna_brazil)
@@ -199,6 +216,7 @@ public class game_controller : MonoBehaviour
     public void prepare_game()
     {
         money = 0;
+        sc.movedir = 1; 
         foreach(loot_respawner lr in loot_spawners)
             lr.spawn_loot();
         if(upgrades_buyed.Count > 0)
@@ -223,5 +241,6 @@ public class game_controller : MonoBehaviour
             m.menu_status();
         }
         update_info();
+        crash_sound.Play();
     }
 }
